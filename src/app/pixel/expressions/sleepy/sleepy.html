@@ -1,0 +1,127 @@
+
+<div class="sleepy-face-wrapper">
+
+  <svg
+
+    class="sleepy-face"
+
+    viewBox="0 0 400 240"
+
+    xmlns="http://www.w3.org/2000/svg"
+
+  >
+
+    <g class="face-group">
+
+      <!-- Zzz flotando -->
+
+      <text class="zzz zzz-1" x="290" y="70" font-size="26" font-family="system-ui, sans-serif" fill="var(--face-neon)">Z</text>
+
+      <text class="zzz zzz-2" x="315" y="50" font-size="20" font-family="system-ui, sans-serif" fill="var(--face-neon)">Z</text>
+
+      <text class="zzz zzz-3" x="335" y="34" font-size="15" font-family="system-ui, sans-serif" fill="var(--face-neon)">Z</text>
+
+      <!-- Ojo izquierdo: párpado pesado, casi cerrado -->
+
+      <path class="eyelid" d="M 100 108 Q 135 128 170 108" fill="none" stroke="var(--face-neon)" stroke-width="9" stroke-linecap="round" />
+
+      <line class="eye-slit" x1="118" y1="115" x2="152" y2="115" stroke="var(--face-neon)" stroke-width="4" stroke-linecap="round" />
+
+      <!-- Ojo derecho -->
+
+      <path class="eyelid" d="M 230 108 Q 265 128 300 108" fill="none" stroke="var(--face-neon)" stroke-width="9" stroke-linecap="round" />
+
+      <line class="eye-slit" x1="248" y1="115" x2="282" y2="115" stroke="var(--face-neon)" stroke-width="4" stroke-linecap="round" />
+
+      <!--
+
+        Boca de bostezo cíclico (SMIL animate). Se pausa/oculta mientras
+
+        se habla, para no competir con el path controlado por Angular.
+
+      -->
+
+      <path
+
+        class="mouth yawn-mouth"
+
+        [class.paused]="talking()"
+
+        fill="var(--screen)"
+
+        stroke="var(--face-neon)"
+
+        stroke-width="6"
+
+        stroke-linejoin="round"
+
+      >
+
+        <animate
+
+          attributeName="d"
+
+          dur="6s"
+
+          repeatCount="indefinite"
+
+          calcMode="spline"
+
+          keyTimes="0; 0.55; 0.65; 0.78; 0.9; 1"
+
+          keySplines="0.4 0 0.6 1; 0.4 0 0.6 1; 0.4 0 0.6 1; 0.4 0 0.6 1; 0.4 0 0.6 1"
+
+          values="
+
+            M 165 185 L 235 185 A 35 5 0 0 1 165 185 Z;
+
+            M 165 185 L 235 185 A 35 5 0 0 1 165 185 Z;
+
+            M 155 180 L 245 180 A 45 42 0 0 1 155 180 Z;
+
+            M 155 178 L 245 178 A 45 46 0 0 1 155 178 Z;
+
+            M 165 185 L 235 185 A 35 5 0 0 1 165 185 Z;
+
+            M 165 185 L 235 185 A 35 5 0 0 1 165 185 Z
+
+          "
+
+        />
+
+      </path>
+
+      <!--
+
+        Boca "lente" para hablar: curva superior 165→235 y curva inferior
+
+        de vuelta 235→165, cerrado con Z. Solo visible mientras se habla.
+
+      -->
+
+      @if (talking()) {
+
+        <path
+
+          class="mouth talk-mouth"
+
+          [attr.d]="'M 165 183 Q 200 ' + topControlY() + ' 235 183 Q 200 ' + bottomControlY() + ' 165 183 Z'"
+
+          fill="var(--screen)"
+
+          stroke="var(--face-neon)"
+
+          stroke-width="6"
+
+          stroke-linejoin="round"
+
+        />
+
+      }
+
+    </g>
+
+  </svg>
+
+</div>
+

@@ -1,0 +1,63 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.neutral-face-wrapper {
+  width: var(--wave-width);
+}
+
+.neutral-face {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.face-group {
+  transform-origin: 200px 130px;
+  animation: idleTilt 8s ease-in-out infinite;
+}
+
+.eye {
+  filter: drop-shadow(0 0 0.4rem var(--face-glow));
+}
+
+.mouth {
+  filter: drop-shadow(0 0 0.45rem var(--face-glow));
+}
+
+@keyframes idleTilt {
+  0%, 78% {
+    transform: rotate(0deg);
+  }
+  85% {
+    transform: rotate(-4deg);
+  }
+  92% {
+    transform: rotate(2deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/**
+ * Arruguitas de comisura: aparición suave cuando la boca abre mucho.
+ */
+.wrinkle {
+  filter: drop-shadow(0 0 0.3rem var(--face-glow));
+  animation: wrinkleIn 120ms ease-out;
+}
+
+@keyframes wrinkleIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

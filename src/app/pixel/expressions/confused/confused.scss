@@ -1,0 +1,103 @@
+
+:host {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 100%;
+
+  height: 100%;
+
+}
+
+.confused-face-wrapper {
+
+  width: var(--wave-width);
+
+}
+
+.confused-face {
+
+  display: block;
+
+  width: 100%;
+
+  height: auto;
+
+  overflow: visible;
+
+}
+
+.face-group {
+
+  transform-origin: 200px 130px;
+
+  animation: confusedTilt 4s ease-in-out infinite;
+
+}
+
+.eyebrow,
+
+.eye-socket,
+
+.mouth {
+
+  filter: drop-shadow(0 0 0.5rem var(--face-glow));
+
+}
+
+.pupil {
+
+  filter: drop-shadow(0 0 0.5rem var(--face-glow));
+
+  transition: x 0.12s ease-out, y 0.12s ease-out;
+
+}
+
+.wrinkle {
+
+  filter: drop-shadow(0 0 0.3rem var(--face-glow));
+
+  animation: wrinkleIn 120ms ease-out;
+
+}
+
+@keyframes wrinkleIn {
+
+  from { opacity: 0; }
+
+  to { opacity: 1; }
+
+}
+
+.question-mark {
+
+  filter: drop-shadow(0 0 0.6rem var(--face-glow));
+
+  animation: questionBlink 2.5s ease-in-out infinite;
+
+}
+
+@keyframes confusedTilt {
+
+  0%, 60%, 100% { transform: rotate(0deg); }
+
+  30%           { transform: rotate(-6deg); }
+
+}
+
+@keyframes questionBlink {
+
+  0%, 40% { opacity: 0; transform: translateY(4px); }
+
+  55%     { opacity: 1; transform: translateY(0); }
+
+  85%     { opacity: 1; }
+
+  100%    { opacity: 0; transform: translateY(4px); }
+
+}
+

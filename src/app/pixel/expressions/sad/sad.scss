@@ -1,0 +1,101 @@
+
+:host {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 100%;
+
+  height: 100%;
+
+}
+
+.sad-face-wrapper {
+
+  width: var(--wave-width);
+
+}
+
+.sad-face {
+
+  display: block;
+
+  width: 100%;
+
+  height: auto;
+
+  overflow: visible;
+
+}
+
+.face-group {
+
+  transform-origin: 200px 130px;
+
+  animation: sadDroop 6s ease-in-out infinite;
+
+}
+
+.eyebrow,
+
+.eye,
+
+.mouth {
+
+  filter: drop-shadow(0 0 0.4rem var(--face-glow));
+
+  opacity: 0.85;
+
+}
+
+.tear {
+
+  filter: drop-shadow(0 0 0.5rem var(--face-glow));
+
+  transform-box: fill-box;
+
+  transform-origin: center;
+
+  animation: tearFall 3s ease-in infinite;
+
+}
+
+.wrinkle {
+
+  filter: drop-shadow(0 0 0.3rem var(--face-glow));
+
+  animation: wrinkleIn 120ms ease-out;
+
+}
+
+@keyframes wrinkleIn {
+
+  from { opacity: 0; }
+
+  to { opacity: 1; }
+
+}
+
+@keyframes sadDroop {
+
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+
+  50%      { transform: translateY(4px) rotate(-1.5deg); }
+
+}
+
+@keyframes tearFall {
+
+  0%   { opacity: 0; transform: translateY(0) scaleY(0.6); }
+
+  20%  { opacity: 1; transform: translateY(0) scaleY(1); }
+
+  80%  { opacity: 0.8; transform: translateY(18px) scaleY(1.1); }
+
+  100% { opacity: 0; transform: translateY(22px) scaleY(0.8); }
+
+}
+

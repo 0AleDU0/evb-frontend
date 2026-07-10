@@ -1,0 +1,119 @@
+
+<div class="listening-wrapper">
+
+  <svg
+
+    class="listening-svg"
+
+    viewBox="0 0 400 240"
+
+    xmlns="http://www.w3.org/2000/svg"
+
+  >
+
+    <!-- Ojo izquierdo: marco rectangular -->
+
+    <rect class="eye-socket" [class.blinking]="isBlinking()" x="90" y="80" width="90" height="65" rx="10" fill="none" stroke="var(--face-neon)" stroke-width="7" />
+
+    <rect
+
+      class="eye-pupil"
+
+      [class.blinking]="isBlinking()"
+
+      [attr.x]="leftPupil().x" [attr.y]="leftPupil().y"
+
+      width="22" height="18" rx="3"
+
+      fill="var(--face-neon)"
+
+    />
+
+    <!-- Ojo derecho -->
+
+    <rect class="eye-socket" [class.blinking]="isBlinking()" x="220" y="80" width="90" height="65" rx="10" fill="none" stroke="var(--face-neon)" stroke-width="7" />
+
+    <rect
+
+      class="eye-pupil"
+
+      [class.blinking]="isBlinking()"
+
+      [attr.x]="rightPupil().x" [attr.y]="rightPupil().y"
+
+      width="22" height="18" rx="3"
+
+      fill="var(--face-neon)"
+
+    />
+
+    <!--
+
+      Boca "lente": curva superior 145→255 y curva inferior de vuelta
+
+      255→145, cerrado con Z. En reposo (mouthOpen=0) ambas curvas
+
+      coinciden en Y=215, reproduciendo la sonrisa original.
+
+    -->
+
+    <path
+
+      class="mouth"
+
+      [attr.d]="'M 145 185 Q 200 ' + topControlY() + ' 255 185 Q 200 ' + bottomControlY() + ' 145 185 Z'"
+
+      fill="none"
+
+      stroke="var(--face-neon)"
+
+      stroke-width="7"
+
+      stroke-linecap="round"
+
+      stroke-linejoin="round"
+
+    />
+
+    <!-- Arruguitas de comisura cuando la boca abre mucho -->
+
+    @if (showWrinkles()) {
+
+      <path
+
+        class="wrinkle"
+
+        d="M 133 177 Q 125 187 131 199"
+
+        fill="none"
+
+        stroke="var(--face-neon)"
+
+        stroke-width="4"
+
+        stroke-linecap="round"
+
+      />
+
+      <path
+
+        class="wrinkle"
+
+        d="M 267 177 Q 275 187 269 199"
+
+        fill="none"
+
+        stroke="var(--face-neon)"
+
+        stroke-width="4"
+
+        stroke-linecap="round"
+
+      />
+
+    }
+
+  </svg>
+
+</div>
+

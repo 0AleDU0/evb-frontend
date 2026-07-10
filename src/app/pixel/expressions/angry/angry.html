@@ -1,0 +1,56 @@
+<div class="angry-face-wrapper">
+  <svg
+    class="angry-face"
+    viewBox="0 0 400 240"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g class="face-group">
+      <!-- Ceja izquierda: se inclina hacia abajo hacia el centro -->
+      <line class="eyebrow" x1="95" y1="75" x2="175" y2="100" stroke="var(--face-neon)" stroke-width="9" stroke-linecap="round" />
+
+      <!-- Ceja derecha -->
+      <line class="eyebrow" x1="305" y1="75" x2="225" y2="100" stroke="var(--face-neon)" stroke-width="9" stroke-linecap="round" />
+
+      <!-- Ojo izquierdo: línea entrecerrada bajo la ceja -->
+      <line class="eye" x1="105" y1="118" x2="165" y2="118" stroke="var(--face-neon)" stroke-width="7" stroke-linecap="round" />
+
+      <!-- Ojo derecho -->
+      <line class="eye" x1="235" y1="118" x2="295" y2="118" stroke="var(--face-neon)" stroke-width="7" stroke-linecap="round" />
+
+      <!--
+        Boca "lente": curva superior 140→260 y curva inferior de vuelta
+        260→140, cerrado con Z. En reposo (mouthOpen=0) ambas curvas
+        coinciden en Y=170, reproduciendo el ceño fruncido original.
+      -->
+      <path
+        class="mouth"
+        [attr.d]="'M 140 195 Q 200 ' + topControlY() + ' 260 195 Q 200 ' + bottomControlY() + ' 140 195 Z'"
+        fill="none"
+        stroke="var(--face-neon)"
+        stroke-width="7"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+
+      <!-- Arruguitas de comisura cuando la boca abre mucho -->
+      @if (showWrinkles()) {
+        <path
+          class="wrinkle"
+          d="M 128 187 Q 120 197 126 209"
+          fill="none"
+          stroke="var(--face-neon)"
+          stroke-width="4"
+          stroke-linecap="round"
+        />
+        <path
+          class="wrinkle"
+          d="M 272 187 Q 280 197 274 209"
+          fill="none"
+          stroke="var(--face-neon)"
+          stroke-width="4"
+          stroke-linecap="round"
+        />
+      }
+    </g>
+  </svg>
+</div>

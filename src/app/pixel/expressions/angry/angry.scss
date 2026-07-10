@@ -1,0 +1,46 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.angry-face-wrapper {
+  width: var(--wave-width);
+}
+
+.angry-face {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.face-group {
+  transform-origin: 200px 130px;
+  animation: angryShake 0.25s ease-in-out infinite;
+}
+
+.eyebrow,
+.eye,
+.mouth {
+  filter: drop-shadow(0 0 0.5rem var(--face-glow));
+}
+
+.wrinkle {
+  filter: drop-shadow(0 0 0.3rem var(--face-glow));
+  animation: wrinkleIn 120ms ease-out;
+}
+
+@keyframes wrinkleIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Temblor sutil y constante, tensión contenida */
+@keyframes angryShake {
+  0%, 100% { transform: translateX(0); }
+  25%      { transform: translateX(-1.5px); }
+  75%      { transform: translateX(1.5px); }
+}

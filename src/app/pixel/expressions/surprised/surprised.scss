@@ -1,0 +1,79 @@
+
+:host {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 100%;
+
+  height: 100%;
+
+}
+
+.surprised-face-wrapper {
+
+  width: var(--wave-width);
+
+}
+
+.surprised-face {
+
+  display: block;
+
+  width: 100%;
+
+  height: auto;
+
+  overflow: visible;
+
+}
+
+.face-group {
+
+  transform-origin: 200px 130px;
+
+  animation: startleJolt 3.5s cubic-bezier(0.36, 0, 0.66, 1) infinite;
+
+}
+
+.eyebrow,
+
+.eye-socket,
+
+.mouth {
+
+  filter: drop-shadow(0 0 0.5rem var(--face-glow));
+
+}
+
+.mouth {
+
+  transition: rx 0.08s ease-out, ry 0.08s ease-out;
+
+}
+
+.pupil {
+
+  filter: drop-shadow(0 0 0.6rem var(--face-glow));
+
+  transition: x 0.12s ease-out, y 0.12s ease-out;
+
+}
+
+@keyframes startleJolt {
+
+  0%, 82% { transform: translateY(0) scale(1); }
+
+  86%     { transform: translateY(-10px) scale(1.06); }
+
+  91%     { transform: translateY(2px) scale(0.99); }
+
+  96%     { transform: translateY(-2px) scale(1.01); }
+
+  100%    { transform: translateY(0) scale(1); }
+
+}
+

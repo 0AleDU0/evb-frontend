@@ -1,0 +1,87 @@
+
+:host {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 100%;
+
+  height: 100%;
+
+}
+
+.listening-wrapper {
+
+  width: var(--wave-width);
+
+}
+
+.listening-svg {
+
+  display: block;
+
+  width: 100%;
+
+  height: auto;
+
+  overflow: visible;
+
+}
+
+.eye-socket {
+
+  filter: drop-shadow(0 0 0.35rem var(--face-glow));
+
+  transform-origin: center;
+
+  transform-box: fill-box;
+
+  transition: transform 90ms ease-in-out;
+
+}
+
+.eye-pupil {
+
+  filter: drop-shadow(0 0 0.5rem var(--face-glow));
+
+  transform-origin: center;
+
+  transform-box: fill-box;
+
+  transition: x 0.12s ease-out, y 0.12s ease-out, transform 90ms ease-in-out;
+
+}
+
+.eye-socket.blinking,
+
+.eye-pupil.blinking {
+
+  transform: scaleY(0.08);
+
+}
+
+.mouth {
+
+  filter: drop-shadow(0 0 0.5rem var(--face-glow));
+
+}
+
+.wrinkle {
+
+  filter: drop-shadow(0 0 0.3rem var(--face-glow));
+
+  animation: wrinkleIn 120ms ease-out;
+
+}
+
+@keyframes wrinkleIn {
+
+  from { opacity: 0; }
+
+  to { opacity: 1; }
+
+}
+

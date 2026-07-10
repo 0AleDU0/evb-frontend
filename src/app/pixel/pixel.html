@@ -1,0 +1,67 @@
+<div class="pixel-stage">
+  <div class="pixel-lights">
+    <span class="light light-1"></span>
+    <span class="light light-2"></span>
+    <span class="light light-3"></span>
+  </div>
+ <!-- Reproductor por número (audios pregrabados) -->
+  <div class="numero-panel">
+      <input
+        type="number"
+        class="numero-input"
+        placeholder="#"
+        [(ngModel)]="numeroIngresado"
+        (keydown.enter)="reproducirPorNumero()"
+      />
+    </div>
+
+  <div class="pixel-frame-wrapper">
+    <img src="/pixel-marco.png" alt="" class="pixel-frame-image" />
+
+    <div class="pixel-screen">
+      <div class="mood-layer" [class.active]="mood() === 'neutral'">
+        <app-neutral />
+      </div>
+      <div class="mood-layer" [class.active]="mood() === 'sad'">
+        <app-sad />
+      </div>
+      <div class="mood-layer" [class.active]="mood() === 'angry'">
+        <app-angry />
+      </div>
+      <div class="mood-layer" [class.active]="mood() === 'surprised'">
+        <app-surprised />
+      </div>
+      <div class="mood-layer" [class.active]="mood() === 'thinking'">
+        <app-thinking />
+      </div>
+      <div class="mood-layer" [class.active]="mood() === 'sleepy'">
+        <app-sleepy />
+      </div>
+      <div class="mood-layer" [class.active]="mood() === 'confused'">
+        <app-confused />
+      </div>
+      <div class="mood-layer" [class.active]="mood() === 'listening'">
+        <app-listening />
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel de prueba para el TTS -->
+  <div class="tts-panel">
+    <input
+      type="text"
+      class="tts-input"
+      placeholder="Escribe algo para que hable..."
+      [(ngModel)]="textoAHablar"
+      (keydown.enter)="hablar()"
+    />
+    <button
+      type="button"
+      class="tts-button"
+      [disabled]="hablando()"
+      (click)="hablar()"
+    >
+      {{ hablando() ? 'Hablando...' : 'Hablar' }}
+    </button>
+  </div>
+</div>

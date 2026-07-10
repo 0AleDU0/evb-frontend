@@ -1,0 +1,107 @@
+
+<div class="sad-face-wrapper">
+
+  <svg
+
+    class="sad-face"
+
+    viewBox="0 0 400 240"
+
+    xmlns="http://www.w3.org/2000/svg"
+
+  >
+
+    <g class="face-group">
+
+      <!-- Ceja izquierda: caída hacia el centro -->
+
+      <line class="eyebrow" x1="95" y1="85" x2="175" y2="105" stroke="var(--face-neon)" stroke-width="7" stroke-linecap="round" />
+
+      <!-- Ceja derecha -->
+
+      <line class="eyebrow" x1="305" y1="85" x2="225" y2="105" stroke="var(--face-neon)" stroke-width="7" stroke-linecap="round" />
+
+      <!-- Ojo izquierdo: curva hacia abajo (entrecerrado, triste) -->
+
+      <path class="eye" d="M 105 122 Q 135 132 165 122" fill="none" stroke="var(--face-neon)" stroke-width="6" stroke-linecap="round" />
+
+      <!-- Ojo derecho -->
+
+      <path class="eye" d="M 235 122 Q 265 132 295 122" fill="none" stroke="var(--face-neon)" stroke-width="6" stroke-linecap="round" />
+
+      <!-- Lágrima cayendo -->
+
+      <path class="tear" d="M 150 132 Q 145 148 150 158 Q 155 148 150 132 Z" fill="var(--face-neon)" />
+
+      <!--
+
+        Boca "lente": curva superior 150→250 y curva inferior de vuelta
+
+        250→150, cerrado con Z. En reposo (mouthOpen=0) ambas curvas
+
+        coinciden en Y=175, reproduciendo la curva triste original.
+
+      -->
+
+      <path
+
+        class="mouth"
+
+        [attr.d]="'M 150 195 Q 200 ' + topControlY() + ' 250 195 Q 200 ' + bottomControlY() + ' 150 195 Z'"
+
+        fill="none"
+
+        stroke="var(--face-neon)"
+
+        stroke-width="7"
+
+        stroke-linecap="round"
+
+        stroke-linejoin="round"
+
+      />
+
+      <!-- Arruguitas de comisura cuando la boca abre mucho -->
+
+      @if (showWrinkles()) {
+
+        <path
+
+          class="wrinkle"
+
+          d="M 138 187 Q 130 197 136 209"
+
+          fill="none"
+
+          stroke="var(--face-neon)"
+
+          stroke-width="4"
+
+          stroke-linecap="round"
+
+        />
+
+        <path
+
+          class="wrinkle"
+
+          d="M 262 187 Q 270 197 264 209"
+
+          fill="none"
+
+          stroke="var(--face-neon)"
+
+          stroke-width="4"
+
+          stroke-linecap="round"
+
+        />
+
+      }
+
+    </g>
+
+  </svg>
+
+</div>
+

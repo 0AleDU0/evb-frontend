@@ -1,0 +1,34 @@
+# Angular
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Dependencies
+/node_modules
+npm-debug.log
+yarn-error.log
+
+# IDEs y editores
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Variables de entorno
+.env
+
+# Archivos de prueba de audio (no confundir con los pregrabados en public/)
+prueba.mp3
+voz_*.mp3
+karen*.wav
+pregunta_prueba.webm
+tts-server/
+/.angular

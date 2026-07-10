@@ -1,0 +1,135 @@
+
+<div class="thinking-face-wrapper">
+
+  <svg
+
+    class="thinking-face"
+
+    viewBox="0 0 400 240"
+
+    xmlns="http://www.w3.org/2000/svg"
+
+  >
+
+    <g class="face-group">
+
+      <!-- Ceja izquierda: normal -->
+
+      <line class="eyebrow" x1="95" y1="70" x2="175" y2="70" stroke="var(--face-neon)" stroke-width="7" stroke-linecap="round" />
+
+      <!-- Ceja derecha: levantada, curiosidad -->
+
+      <path class="eyebrow" d="M 225 68 Q 265 40 305 62" fill="none" stroke="var(--face-neon)" stroke-width="7" stroke-linecap="round" />
+
+      <!-- Ojo izquierdo: marco cuadrado + pupila que sigue el cursor -->
+
+      <rect class="eye-socket" x="100" y="82" width="70" height="65" rx="8" fill="none" stroke="var(--face-neon)" stroke-width="6" />
+
+      <rect
+
+        class="pupil"
+
+        [attr.x]="leftPupil().x" [attr.y]="leftPupil().y"
+
+        width="16" height="16" rx="3"
+
+        fill="var(--face-neon)"
+
+      />
+
+      <!-- Ojo derecho -->
+
+      <rect class="eye-socket" x="230" y="82" width="70" height="65" rx="8" fill="none" stroke="var(--face-neon)" stroke-width="6" />
+
+      <rect
+
+        class="pupil"
+
+        [attr.x]="rightPupil().x" [attr.y]="rightPupil().y"
+
+        width="16" height="16" rx="3"
+
+        fill="var(--face-neon)"
+
+      />
+
+      <!--
+
+        Boca "lente": curva superior 155→235 y curva inferior de vuelta
+
+        235→155, cerrado con Z. En reposo (mouthOpen=0) ambas curvas
+
+        coinciden en Y=181, reproduciendo la boca apretada original.
+
+      -->
+
+      <path
+
+        class="mouth"
+
+        [attr.d]="'M 155 185 Q 195 ' + topControlY() + ' 235 190 Q 195 ' + bottomControlY() + ' 155 185 Z'"
+
+        fill="none"
+
+        stroke="var(--face-neon)"
+
+        stroke-width="7"
+
+        stroke-linecap="round"
+
+        stroke-linejoin="round"
+
+      />
+
+      <!-- Arruguitas de comisura cuando la boca abre mucho -->
+
+      @if (showWrinkles()) {
+
+        <path
+
+          class="wrinkle"
+
+          d="M 143 178 Q 135 188 141 200"
+
+          fill="none"
+
+          stroke="var(--face-neon)"
+
+          stroke-width="4"
+
+          stroke-linecap="round"
+
+        />
+
+        <path
+
+          class="wrinkle"
+
+          d="M 247 184 Q 255 194 249 206"
+
+          fill="none"
+
+          stroke="var(--face-neon)"
+
+          stroke-width="4"
+
+          stroke-linecap="round"
+
+        />
+
+      }
+
+      <!-- Burbujas de pensamiento -->
+
+      <circle class="thought-bubble bubble-1" cx="300" cy="45" r="5" fill="var(--face-neon)" />
+
+      <circle class="thought-bubble bubble-2" cx="320" cy="27" r="7" fill="var(--face-neon)" />
+
+      <circle class="thought-bubble bubble-3" cx="345" cy="10" r="10" fill="var(--face-neon)" />
+
+    </g>
+
+  </svg>
+
+</div>
+

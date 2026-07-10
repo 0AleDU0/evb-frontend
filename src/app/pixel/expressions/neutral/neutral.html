@@ -1,0 +1,65 @@
+<div class="neutral-face-wrapper">
+  <svg
+    class="neutral-face"
+    viewBox="0 0 400 240"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g class="face-group">
+      <!-- Ojo izquierdo: V invertida curveada -->
+      <path
+        class="eye"
+        d="M 95 110 Q 135 65 175 110"
+        fill="none"
+        stroke="var(--face-neon)"
+        stroke-width="8"
+        stroke-linecap="round"
+      />
+
+      <!-- Ojo derecho -->
+      <path
+        class="eye"
+        d="M 225 110 Q 265 65 305 110"
+        fill="none"
+        stroke="var(--face-neon)"
+        stroke-width="8"
+        stroke-linecap="round"
+      />
+
+      <!--
+        Boca única (una sola forma que se deforma, no dos elementos cruzando opacidad).
+        Es un "lente": curva superior de 140→260, y curva inferior de vuelta 260→140, cerrado con Z.
+        En reposo (mouthOpen=0) ambas curvas coinciden y se ve igual a la sonrisa original.
+        Al hablar, la curva de arriba sube y la de abajo baja, abriendo la boca.
+      -->
+      <path
+        class="mouth"
+        [attr.d]="'M 140 180 Q 200 ' + topControlY() + ' 260 180 Q 200 ' + bottomControlY() + ' 140 180 Z'"
+        fill="none"
+        stroke="var(--face-neon)"
+        stroke-width="7"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+
+      <!-- Arruguitas de comisura cuando la boca abre mucho -->
+      @if (showWrinkles()) {
+        <path
+          class="wrinkle"
+          d="M 128 172 Q 120 182 126 194"
+          fill="none"
+          stroke="var(--face-neon)"
+          stroke-width="4"
+          stroke-linecap="round"
+        />
+        <path
+          class="wrinkle"
+          d="M 272 172 Q 280 182 274 194"
+          fill="none"
+          stroke="var(--face-neon)"
+          stroke-width="4"
+          stroke-linecap="round"
+        />
+      }
+    </g>
+  </svg>
+</div>

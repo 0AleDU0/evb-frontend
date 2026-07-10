@@ -1,0 +1,34 @@
+:root {
+  /* Screen */
+  --screen: #050505;
+  --screen-shadow: #0B0B0B;
+
+  /* Frame (blue-bordered monitor) */
+  --frame-dark: #2C4A63;
+  --frame: #4A7A96;
+  --frame-light: #7FB3CC;
+
+  /* Face — single neon green accent (the waveform line) */
+  --face-neon: #39FF6A;
+  --face-glow: rgba(57, 255, 106, 0.55);
+
+  /* Text/subtitles */
+  --text: #F4FFF8;
+  --wave-width: 61%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--screen-shadow);
+}
+
+html, body {
+  cursor: none;
+}

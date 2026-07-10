@@ -1,0 +1,131 @@
+
+<div class="confused-face-wrapper">
+
+  <svg
+
+    class="confused-face"
+
+    viewBox="0 0 400 240"
+
+    xmlns="http://www.w3.org/2000/svg"
+
+  >
+
+    <g class="face-group">
+
+      <!-- Ceja izquierda: levantada, curva pronunciada (sorpresa/duda) -->
+
+      <path class="eyebrow" d="M 95 70 Q 135 40 175 68" fill="none" stroke="var(--face-neon)" stroke-width="7" stroke-linecap="round" />
+
+      <!-- Ceja derecha: plana, normal -->
+
+      <line class="eyebrow" x1="225" y1="72" x2="305" y2="72" stroke="var(--face-neon)" stroke-width="7" stroke-linecap="round" />
+
+      <!-- Ojo izquierdo: marco cuadrado + pupila que sigue el cursor -->
+
+      <rect class="eye-socket" x="100" y="82" width="70" height="65" rx="8" fill="none" stroke="var(--face-neon)" stroke-width="6" />
+
+      <rect
+
+        class="pupil"
+
+        [attr.x]="leftPupil().x" [attr.y]="leftPupil().y"
+
+        width="16" height="16" rx="3"
+
+        fill="var(--face-neon)"
+
+      />
+
+      <!-- Ojo derecho -->
+
+      <rect class="eye-socket" x="230" y="82" width="70" height="65" rx="8" fill="none" stroke="var(--face-neon)" stroke-width="6" />
+
+      <rect
+
+        class="pupil"
+
+        [attr.x]="rightPupil().x" [attr.y]="rightPupil().y"
+
+        width="16" height="16" rx="3"
+
+        fill="var(--face-neon)"
+
+      />
+
+      <!--
+
+        Boca "lente": curva superior 145→240 y curva inferior de vuelta
+
+        240→145, cerrado con Z. En reposo (mouthOpen=0) ambas curvas
+
+        coinciden en Y=200, reproduciendo la sonrisa torcida original.
+
+      -->
+
+      <path
+
+        class="mouth"
+
+        [attr.d]="'M 145 185 Q 190 ' + topControlY() + ' 240 178 Q 190 ' + bottomControlY() + ' 145 185 Z'"
+
+        fill="none"
+
+        stroke="var(--face-neon)"
+
+        stroke-width="7"
+
+        stroke-linecap="round"
+
+        stroke-linejoin="round"
+
+      />
+
+      <!-- Arruguitas de comisura cuando la boca abre mucho -->
+
+      @if (showWrinkles()) {
+
+        <path
+
+          class="wrinkle"
+
+          d="M 133 178 Q 125 188 131 200"
+
+          fill="none"
+
+          stroke="var(--face-neon)"
+
+          stroke-width="4"
+
+          stroke-linecap="round"
+
+        />
+
+        <path
+
+          class="wrinkle"
+
+          d="M 252 172 Q 260 182 254 194"
+
+          fill="none"
+
+          stroke="var(--face-neon)"
+
+          stroke-width="4"
+
+          stroke-linecap="round"
+
+        />
+
+      }
+
+      <!-- Signo de interrogación parpadeante -->
+
+      <text class="question-mark" x="310" y="60" font-size="42" font-family="system-ui, sans-serif" fill="var(--face-neon)">?</text>
+
+    </g>
+
+  </svg>
+
+</div>
+

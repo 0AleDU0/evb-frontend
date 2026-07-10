@@ -1,0 +1,77 @@
+
+<div class="surprised-face-wrapper">
+
+  <svg
+
+    class="surprised-face"
+
+    viewBox="0 0 400 240"
+
+    xmlns="http://www.w3.org/2000/svg"
+
+  >
+
+    <g class="face-group">
+
+      <!-- Cejas disparadas hacia arriba -->
+
+      <line class="eyebrow" x1="105" y1="55" x2="165" y2="55" stroke="var(--face-neon)" stroke-width="6" stroke-linecap="round" />
+
+      <line class="eyebrow" x1="235" y1="55" x2="295" y2="55" stroke="var(--face-neon)" stroke-width="6" stroke-linecap="round" />
+
+      <!-- Ojo izquierdo: marco cuadrado, muy abierto -->
+
+      <rect class="eye-socket" x="100" y="82" width="70" height="65" rx="8" fill="none" stroke="var(--face-neon)" stroke-width="6" />
+
+      <rect
+
+        class="pupil"
+
+        [attr.x]="leftPupil().x" [attr.y]="leftPupil().y"
+
+        width="16" height="16" rx="3"
+
+        fill="var(--face-neon)"
+
+      />
+
+      <!-- Ojo derecho -->
+
+      <rect class="eye-socket" x="230" y="82" width="70" height="65" rx="8" fill="none" stroke="var(--face-neon)" stroke-width="6" />
+
+      <rect
+
+        class="pupil"
+
+        [attr.x]="rightPupil().x" [attr.y]="rightPupil().y"
+
+        width="16" height="16" rx="3"
+
+        fill="var(--face-neon)"
+
+      />
+
+      <!-- Boca: "O" que crece al hablar -->
+
+      <ellipse
+
+        class="mouth"
+
+        cx="200" cy="185"
+
+        [attr.rx]="mouthRx()" [attr.ry]="mouthRy()"
+
+        fill="var(--screen)"
+
+        stroke="var(--face-neon)"
+
+        stroke-width="6"
+
+      />
+
+    </g>
+
+  </svg>
+
+</div>
+
