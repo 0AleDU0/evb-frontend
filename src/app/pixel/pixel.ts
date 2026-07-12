@@ -1,4 +1,4 @@
-import { Component, HostListener, Input, ViewChild, signal } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, ViewChild, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Sad } from './expressions/sad/sad';
 import { Angry } from './expressions/angry/angry';
@@ -60,6 +60,8 @@ export class Pixel {
   @ViewChild(Confused) private confusedRef?: Confused;
   @ViewChild(Listening) private listeningRef?: Listening;
 
+  @ViewChild('numeroInput') private numeroInputRef?: ElementRef<HTMLInputElement>;
+
   protected numeroIngresado = signal('');
 
   protected mood = signal<PixelMood>('neutral');
@@ -74,7 +76,6 @@ export class Pixel {
     this.indiceTexto.set(0);
   }
 
-  protected textoAHablar = signal('');
   protected hablando = signal(false);
 
   protected grabando = signal(false);
@@ -95,6 +96,12 @@ export class Pixel {
     const target = event.target as HTMLElement | null;
     const escribiendoEnCampo =
       target?.tagName === 'INPUT' || target?.tagName === 'TEXTAREA';
+
+    if (event.key === 'ArrowDown' && !escribiendoEnCampo) {
+      event.preventDefault();
+      this.numeroInputRef?.nativeElement.focus();
+      return;
+    }
 
     if (event.key === 'Enter' && !escribiendoEnCampo) {
       event.preventDefault();
@@ -154,18 +161,6 @@ export class Pixel {
     return this.audioContext;
   }
 
-  /**
-   * Reproduce cualquier audio (TTS o pregrabado) y anima la boca de la
-   * expresión activa EN VIVO, analizando el audio real con la Web Audio API:
-   * - Volumen general (energía total) -> qué tan abierta va la boca.
-   * - Balance graves/agudos -> ajusta la apertura según la "tonalidad":
-   *   sonidos graves (o, u, m) cierran un poco más, sonidos agudos
-   *   (i, e, s) abren un poco más, imitando cómo se ve realmente hablar.
-   *
-   * En cada frame se vuelve a buscar la expresión activa (no se fija al
-   * principio), así si cambiás de mood a mitad del audio, la animación
-   * "salta" a la cara nueva en vez de seguir en la vieja.
-   */
   private reproducirConAnalisisDeAudio(audio: HTMLAudioElement): Promise<void> {
     return new Promise((resolve, reject) => {
       const audioContext = this.obtenerAudioContext();
@@ -201,7 +196,6 @@ export class Pixel {
 
         analyser.getByteFrequencyData(datosFrecuencia);
 
-        // Dividimos el espectro en tres tercios: graves, medios, agudos.
         const tercio = Math.floor(bufferLength / 3);
         const graves = datosFrecuencia.subarray(0, tercio);
         const agudos = datosFrecuencia.subarray(tercio * 2, bufferLength);
@@ -213,14 +207,8 @@ export class Pixel {
         const promedioGraves = promedio(graves);
         const promedioAgudos = promedio(agudos);
 
-        // Volumen general normalizado a 0-1 (120 es un techo razonable
-        // para voz hablada, ajustable si se ve muy tímida o muy exagerada).
         const nivelVolumen = Math.min(promedioGeneral / 120, 1);
-
-        // Balance tonal: positivo si predominan agudos, negativo si graves.
         const balanceTonal = (promedioAgudos - promedioGraves) / 255;
-
-        // Sonidos agudos abren un poco más, graves cierran un poco más.
         const nivelFinal = Math.max(0, Math.min(1, nivelVolumen + balanceTonal * 0.2));
 
         const expresionActual = this.obtenerExpresionActiva();
@@ -283,12 +271,6 @@ export class Pixel {
 
     await this.hablarTextoConBoca(textos[indice]);
     this.indiceTexto.update((i) => i + 1);
-  }
-
-  async hablar(): Promise<void> {
-    const texto = this.textoAHablar().trim();
-    if (!texto) return;
-    await this.hablarTextoConBoca(texto);
   }
 
   private async iniciarGrabacion(): Promise<void> {
